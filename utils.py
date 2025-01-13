@@ -236,18 +236,10 @@ def get_TF_list(
         A list of unique TFs extracted from the specified columns.
     """
     tf_list = []
-    print(motif_enrichment_table.columns)
-
-    
-    for col in annotation:
-        if col in motif_enrichment_table:
-            print(f"{col} content sample: {motif_enrichment_table[col].dropna().head()}")
-
 
     # Iterate through the specified annotation columns
     for name in annotation:
         if name in motif_enrichment_table:
-            print(f"Processing annotation column: {name}")
             
             # Extract the column values
             tfs = motif_enrichment_table[name].dropna().tolist()
@@ -255,14 +247,10 @@ def get_TF_list(
             # Split comma-separated values and flatten
             tfs = [tf.strip() for items in tfs for tf in items.split(',') if tf.strip()]
             
-            # Debugging: Print intermediate TFs
-            print(f"Extracted TFs from {name}: {tfs[:5]} (showing up to 5)")
-            
             tf_list.extend(tfs)
 
     # Remove duplicates and return the sorted list of unique TFs
     unique_tfs = sorted(set(tf_list))
-    print(f"Total unique TFs extracted: {len(unique_tfs)}")
     return unique_tfs
 
 def get_motifs_per_TF(motif_enrichment_table: pd.DataFrame,
@@ -365,7 +353,7 @@ def get_cistromes_per_region_set(motif_enrichment_region_set,
                                                                            tf,
                                                                            motif_column = 'Index',
                                                                            annotation=['Direct_annot'])) for tf in tfs}
-        print(f'\tDirect annot TFs: {len(tfs)}')
+        # print(f'\tDirect annot TFs: {len(tfs)}')
     else:
         cistromes_per_region_set_direct={}
     
@@ -376,7 +364,7 @@ def get_cistromes_per_region_set(motif_enrichment_region_set,
                                                                            tf,
                                                                            motif_column = 'Index',
                                                                            annotation=annotation)) for tf in tfs}
-        print(f'\tExtended annot TFs: {len(tfs)}')
+        # print(f'\tExtended annot TFs: {len(tfs)}')
 
     else:
         cistromes_per_region_set_extended={}
