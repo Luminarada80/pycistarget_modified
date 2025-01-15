@@ -221,19 +221,19 @@ class DEM(MotifEnrichmentResult):
         background_scores_arr = np.array(background_scores)
         
         
-        # Function to write array to a file
-        def append_or_create_file(file_path, data_array):
-            mode = "a" if os.path.exists(file_path) else "w"
-            with open(file_path, mode) as file:
-                file.write(",".join(map(str, data_array)) + "\n")
+        # # Function to write array to a file
+        # def append_or_create_file(file_path, data_array):
+        #     mode = "a" if os.path.exists(file_path) else "w"
+        #     with open(file_path, mode) as file:
+        #         file.write(",".join(map(str, data_array)) + "\n")
 
-        # File paths
-        foreground_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/foreground.csv"
-        background_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/background.csv"
+        # # File paths
+        # foreground_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/foreground.csv"
+        # background_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/background.csv"
 
-        # Write data
-        append_or_create_file(foreground_path, foreground_scores_arr)
-        append_or_create_file(background_path, background_scores_arr)
+        # # Write data
+        # append_or_create_file(foreground_path, foreground_scores_arr)
+        # append_or_create_file(background_path, background_scores_arr)
 
         
         log.info(f'Number of background scores: {len(background_scores_arr.flatten())}')
@@ -267,12 +267,12 @@ class DEM(MotifEnrichmentResult):
         log.info(f'Mean Foreground score: {result["Mean_fg"].mean()}, std: {result["Mean_fg"].std()}, threshold: {self.mean_fg_thr}')
         log.info(f'Mean Background score: {result["Mean_bg"].mean()}, std: {result["Mean_bg"].std()}, threshold: {self.mean_fg_thr}')
 
-        # File paths
-        adjpval_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/adjpval.csv"
-        Log2FC_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/Log2FC.csv"
+        # # File paths
+        # adjpval_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/adjpval.csv"
+        # Log2FC_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/Log2FC.csv"
         
-        append_or_create_file(adjpval_path, result["Adjusted_pval"])
-        append_or_create_file(Log2FC_path, result["Log2FC"])
+        # append_or_create_file(adjpval_path, result["Adjusted_pval"])
+        # append_or_create_file(Log2FC_path, result["Log2FC"])
         
         # Threshold dataframe
         result = result.loc[

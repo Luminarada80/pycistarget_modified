@@ -354,19 +354,19 @@ class cisTarget(MotifEnrichmentResult):
         log.info(f'\tMean NES: {enriched_features["NES"].mean():.2f}, std: {enriched_features["NES"].std():.2f}, threshold: {self.nes_threshold} ({len(enriched_features["NES"])}/{len(features)} features enriched)')
         log.info(f'\tMean AUC: {enriched_features["AUC"].mean():.2f}, std: {enriched_features["AUC"].std():.2f}, threshold: {self.auc_threshold} ({len(enriched_features["AUC"])}/{len(features)} features enriched)')
         
-        # Function to write array to a file
-        def append_or_create_file(file_path, data_array):
-            mode = "a" if os.path.exists(file_path) else "w"
-            with open(file_path, mode) as file:
-                file.write(",".join(map(str, data_array)) + "\n")
+        # # Function to write array to a file
+        # def append_or_create_file(file_path, data_array):
+        #     mode = "a" if os.path.exists(file_path) else "w"
+        #     with open(file_path, mode) as file:
+        #         file.write(",".join(map(str, data_array)) + "\n")
 
-        # File paths
-        NES_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/NES.csv"
-        AUC_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/AUC.csv"
+        # # File paths
+        # NES_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/NES.csv"
+        # AUC_path = "/gpfs/Labs/Uzun/SCRIPTS/PROJECTS/2024.GRN_BENCHMARKING.MOELLER/SCENIC_PLUS/debugging/AUC.csv"
 
-        # Write data
-        append_or_create_file(NES_path, enriched_features["NES"])
-        append_or_create_file(AUC_path, enriched_features["AUC"])
+        # # Write data
+        # append_or_create_file(NES_path, enriched_features["NES"])
+        # append_or_create_file(AUC_path, enriched_features["AUC"])
         
         # Recovery analysis
         rccs, _ = recovery(db_rankings_regions, ctx_db.total_regions, weights, int(self.rank_threshold*ctx_db.total_regions), self.auc_threshold, no_auc=True)  
